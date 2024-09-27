@@ -1,0 +1,43 @@
+CREATE TABLE Usuario (
+    ID_Usuario INT PRIMARY KEY,
+    Nombre VARCHAR(255),
+    Correo_Electronico VARCHAR(255),
+    Contrasena VARCHAR(255),
+    Fecha_Creacion VARCHAR(255),
+    Ultimo_Acceso VARCHAR(255)
+);
+
+CREATE TABLE Categoria (
+    ID_Categoria INT PRIMARY KEY,
+    ID_Usuario INT,
+    Nombre VARCHAR(255),
+    FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
+);
+
+CREATE TABLE Tarea (
+    ID_Tarea INT PRIMARY KEY,
+    ID_Usuario INT,
+    Titulo VARCHAR(255),
+    Descripcion VARCHAR(255),
+    Fecha_Creacion VARCHAR(255),
+    Fecha_Limite VARCHAR(255),
+    Prioridad VARCHAR(255),
+    Estado VARCHAR(255),
+    Categoria INT,
+    FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario),
+    FOREIGN KEY (Categoria) REFERENCES Categoria(ID_Categoria)
+);
+
+CREATE TABLE Recordatorio (
+    ID_Recordatorio INT PRIMARY KEY,
+    ID_Tarea INT,
+    Fecha_Hora_Recordatorio VARCHAR(255),
+    FOREIGN KEY (ID_Tarea) REFERENCES Tarea(ID_Tarea)
+);
+
+CREATE TABLE Tarea_Completada (
+    ID_Tarea_Completada INT PRIMARY KEY,
+    ID_Tarea INT,
+    Fecha_Completada VARCHAR(255),
+    FOREIGN KEY (ID_Tarea) REFERENCES Tarea(ID_Tarea)
+);
