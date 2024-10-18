@@ -1,5 +1,6 @@
 package com.proyecto.gestitareas.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ public class UsuarioService implements IUsuarioService{
 
     @Override
     public Usuario nuevoUsuario(Usuario usuario) {
+        usuario.setFechaCreacion(LocalDateTime.now());
         return usuarioRepositorio.save(usuario);
     }
 

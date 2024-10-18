@@ -27,39 +27,36 @@
             <form id="form-usuario" class="mt-4" action="" onsubmit="return validateForm()" method="post">
                 <div class="mb-3">
                     <label for="usuario-id">Id</label>
-                    <input type="text" class="form-control" id="proveedor-id" name="proveedor-id" readonly>
+                    <input type="text" class="form-control" id="usuario-id" name="usuario-id" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="usuario-nombre">Nombre</label>
-                    <input type="text" class="form-control" id="proveedor-nit" name="proveedor-nit" 
-                           required pattern="\d+" minlength="9" maxlength="9" title="El campo solo debe contener 9 dígitos">
+                    <input type="text" class="form-control" id="usuario-nombre" name="usuario-nombre" >
                 </div>
                 <div class="mb-3">
                     <label for=usuarior-contraseña" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="proveedor-nombre" name="proveedor-nombre" 
-                           required pattern="^[a-zA-Z\s]+$" title="El campo solo debe contener letras y espacios">
+                    <input type="password" class="form-control" id="usuario-contraseña" name="usuario-contraseña >
                 </div>
                 <div class="mb-3">
                     <label for="usuario-email">Email</label>
-                    <input type="email" class="form-control" id="proveedor-ciudad" name="proveedor-ciudad" 
-                           required pattern="^[a-zA-Z\s]+$" title="El campo solo debe contener letras y espacios">
+                    <input type="email" class="form-control" id="usuario-email" name="usuario-email">
                 </div>
-                <button type="button" class="btn btn-primary" id="save-btn" onclick="saveProveedor()" disabled>Guardar</button>
-                <button type="button" class="btn btn-danger" onclick="deleteProveedor()">Eliminar</button>
+                <button type="button" class="btn btn-primary" id="save-btn" onclick="saveUsuario()">Guardar</button>
+                <button type="button" class="btn btn-danger" onclick="deleteUsuario()">Eliminar</button>
             </form>
         </div>
-        <script src="js/validateForm.js"></script>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
     <script src="js/request.js"></script>
-    <script src="js/proveedores.js"></script>
+    <script src="js/usuario.js"></script>
+    <script src="js/validateForm.js"></script>
     <script>
         window.onload = function(){
         const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('idproveedor') != null)
-                loadProveedor(urlParams.get('idproveedor'))
+            if (urlParams.get('idUsuario') != null)
+                loadUsuario(urlParams.get('idUsuario'))
             }
     </script>
 </body>

@@ -31,13 +31,13 @@ public class UsuarioController {
      UsuarioService usuarioService;
 
      //Listar los usuarios
-     @GetMapping("/list/Usuario")
+     @GetMapping("/list/usuario")
      public List<Usuario> cargarUsuarios() {
         return usuarioService.getUsuarios();
      }
 
      //Buscar por id
-     @GetMapping("/list/Usuario/{id}")
+     @GetMapping("/list/usuario/{id}")
      public Usuario buscarPorId(@PathVariable Long id) {
         return usuarioService.buscarUsuario(id);
      }
@@ -52,7 +52,7 @@ public class UsuarioController {
      //Acturalizar un usuario
      @PutMapping("/usuario/actualizar")
      public ResponseEntity<Usuario> actualizar(@Valid @RequestBody Usuario usuario) {
-        Usuario obj = usuarioService.buscarUsuario(usuario.getId());
+        Usuario obj = usuarioService.buscarUsuario(usuario.getIdUsuario());
         if (obj != null) {
             obj.setEmail(usuario.getEmail());
             obj.setNombre(usuario.getNombre());

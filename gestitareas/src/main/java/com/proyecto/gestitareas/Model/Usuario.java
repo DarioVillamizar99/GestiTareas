@@ -1,5 +1,8 @@
 package com.proyecto.gestitareas.Model;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,32 +47,35 @@ public class Usuario {
     @NotNull(message="Este campo no puede ser nulo")
     @NotEmpty(message = "Este campo no puede estar vacío")
     @NotBlank(message = "Este campo no puede estar en blanco")
-    @Email(message = "Debe ser un correo electrónico válido")
     @Column(name = "email")
     private String email;
 
+    @Column(name = "fechaCreacion")
+    private LocalDateTime fechaCreacion;
+
+    @Column(name = "ultimaSesion")
+    private LocalDateTime ultimaSesion;
     /*------------------------------Constructores----------------------*/
 
     public Usuario() {
 
     }
 
-    public Usuario(Long idUsuario, String nombre, String password,
-            String nombreUsuario, String email) {
-
+    public Usuario(Long idUsuario,String nombre,String password,String email,
+            LocalDateTime fechaCreacion, LocalDateTime ultimaSesion) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.password = password;
         this.email = email;
+        this.fechaCreacion = fechaCreacion;
+        this.ultimaSesion = ultimaSesion;
     }
 
-    /*-------------------Metdoos Getters and Setters---------------------- */
-
-    public Long getId() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setId(Long idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -97,4 +103,21 @@ public class Usuario {
         this.email = email;
     }
 
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public LocalDateTime getUltimaSesion() {
+        return ultimaSesion;
+    }
+
+    public void setUltimaSesion(LocalDateTime ultimaSesion) {
+        this.ultimaSesion = ultimaSesion;
+    }
+
+    
 }
