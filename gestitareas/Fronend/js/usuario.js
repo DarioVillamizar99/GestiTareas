@@ -77,7 +77,7 @@ function loadUsuario(idUsuario){
     request.onload = function(){
         let data = request.response;
         //Se actualiza el valor de las variables segun el JSON
-        id.value = data.id
+        id.value = data.idUsuario
         nombre.value = data.nombre
         contraseña.value = data.contraseña
         email.value = data.email
