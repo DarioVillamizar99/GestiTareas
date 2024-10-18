@@ -15,3 +15,5 @@ function validateForm() {
 document.querySelectorAll('#form-usuario input').forEach(input => {
     input.addEventListener('input', validateForm);
 });
+
+
