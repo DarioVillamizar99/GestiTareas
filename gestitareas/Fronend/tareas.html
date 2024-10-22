@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tareas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h1>Gestión de Tareas</h1>
+        <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tareaModal">Nueva Tarea</button>
+
+        <h2 class="mt-4">Lista de Tareas</h2>
+        <table class="table" id="tarea-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Fecha Creación</th>
+                    <th>Fecha Límite</th>
+                    <th>Prioridad</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tarea-body"></tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="tareaModal" tabindex="-1" role="dialog" aria-labelledby="tareaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tareaModalLabel">Nueva Tarea</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="tareaForm">
+                        <input type="hidden" id="idTarea">
+                        <!-- Campo oculto para el ID de la tarea -->
+                        <div class="form-group">
+                            <label for="titulo">Título</label>
+                            <input type="text" class="form-control" id="titulo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea class="form-control" id="descripcion" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaLimite">Fecha Límite</label>
+                            <input type="date" class="form-control" id="fechaLimite" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prioridad">Prioridad</label>
+                            <select class="form-control" id="prioridad" required>
+                                <option value="Alta">Alta</option>
+                                <option value="Media">Media</option>
+                                <option value="Baja">Baja</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoría</label>
+                            <input type="number" class="form-control" id="categoria" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear Tarea</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/tarea.js"></script>
+</body>
+
+</html>

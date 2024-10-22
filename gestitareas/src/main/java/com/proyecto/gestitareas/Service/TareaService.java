@@ -34,6 +34,7 @@ public class TareaService {
         tarea.setFechaLimite(tareaDTO.getFechaLimite());
         tarea.setPrioridad(tareaDTO.getPrioridad());
         tarea.setEstado(tareaDTO.getEstado());
+        tarea.setCategoria(tareaDTO.getCategoria());
 
         // Guardar la entidad Tarea y obtener el ID generado
         Tarea tareaGuardada = tareaRepository.save(tarea);

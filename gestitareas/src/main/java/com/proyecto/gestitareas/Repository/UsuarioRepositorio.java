@@ -8,7 +8,7 @@ import com.proyecto.gestitareas.Model.Usuario;
 
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
         //JPQL: Se hace la consulta sobre la clase
-    @Query("select count(*) from Usuario as p where p.nombre = :nombre and p.password =:password")
+    @Query("select idUsuario from Usuario as p where p.nombre = :nombre and p.password =:password")
     int findByNombreUsuarioAndPassword(@Param("nombre") String nombreUsuario,
                     @Param("password") String password);
 
