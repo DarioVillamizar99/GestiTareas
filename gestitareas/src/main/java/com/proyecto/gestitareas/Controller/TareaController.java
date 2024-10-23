@@ -41,7 +41,9 @@ public class TareaController {
     @PutMapping("/{id}")
     public ResponseEntity<Tarea> updateTarea(@PathVariable int id, @RequestBody TareaDTO tareaDTO) {
         try {
+            System.out.println(id);
             return ResponseEntity.ok(tareaService.updateTarea(id, tareaDTO));
+
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
