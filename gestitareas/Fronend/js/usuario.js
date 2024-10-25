@@ -1,29 +1,47 @@
-function saveUsuario(){
-    let id = document.getElementById('usuario-id').value
-    let nombre = document.getElementById('usuario-nombre').value
-    let contraseña = document.getElementById('usuario-contraseña').value
-    let email = document.getElementById('usuario-email').value
-    let data = 
-    {
+document.getElementById('usuarioForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que el formulario recargue la página
+    saveUsuario(); // Llama a la función para guardar el usuario
+});
+
+
+function saveUsuario() {
+    // Obtiene los valores de los elementos con los IDs correctos
+    let id = document.getElementById('idNuevoUsuario').value;
+    let nombre = document.getElementById('nombreNuevo').value;
+    let contraseña = document.getElementById('contraseñaNuevo').value;
+    let email = document.getElementById('emailNuevo').value;
+
+    // Construye el objeto de datos a enviar
+    let data = {
+        "idUsuario": id,
         "nombre": nombre,
         "password": contraseña,
-        "email": email,
-        "id": id
+        "email": email
     };
-    let url = id ? `usuario/actualizar/${id}` : 'usuario/agregar';
-    let method = id ? 'PUT' : 'POST';
 
-    let request = sendRequest(url, method, data);
+    // Define la URL de la API
+    let url = `usuario/agregar`;
+    
+    // Envía la solicitud usando `sendRequest`
+    let request = sendRequest(url, 'POST', data);
 
-    request.onload = function(){
-        alert('usuario creado o actualizado con exito.')
-        window.location = "menu.html"
-    }
+    // Maneja la respuesta en `onload`
+    request.onload = function() {
+        if (request.status === 200 || request.status === 201) { // Asegúrate de manejar correctamente los códigos de éxito
+            alert('Usuario creado con éxito.');
+            $('#nuevoUsuarioModal').modal('hide'); // Oculta el modal
+            window.location = "usuarios.html"; // Redirecciona a otra página
+        } else {
+            alert('Error al guardar los cambios: ' + request.status);
+        }
+    };
 
+    // Maneja cualquier error de red
     request.onerror = function() {
-        alert('Error al guardar los cambios.');
-    }
+        alert('Error de red al intentar guardar los cambios.');
+    };
 }
+
 
 function deleteUsuario(){
     let id = document.getElementById('usuario-id').value
@@ -51,10 +69,9 @@ function loadData(){
                 <td>${element.nombre}</th>
                 <td>${element.email}</th>
                 <td>${element.fechaCreacion}</th>
-                <td>${element.ultimaSesion}</th>
                 <td> 
-                    <button type="button" class="btn-primary" onclick='window.location = 
-                    "formUsuario.html?idUsuario=${element.idUsuario}"'>Ver</button>
+                    <button class="btn btn-warning btn-sm" onclick="loadUsuario(${element.idUsuario})" data-toggle="modal" data-target="#editarUsuarioModal">Editar</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteUsuario(${element.idUsuario})">Eliminar</button>
                 </td>
             </tr>`
         });
@@ -67,22 +84,89 @@ function loadData(){
     };
 }
 
-//funcion para actualizar los datos de un proveedor
-function loadUsuario(idUsuario){
-    let request = sendRequest('list/usuario/'+idUsuario, 'GET', '')
-    let id = document.getElementById('usuario-id')
-    let nombre = document.getElementById('usuario-nombre')
-    let contraseña = document.getElementById('usuario-contraseña')
-    let email = document.getElementById('usuario-email')
-    request.onload = function(){
-        let data = request.response;
-        //Se actualiza el valor de las variables segun el JSON
-        id.value = data.idUsuario
-        nombre.value = data.nombre
-        contraseña.value = data.contraseña
-        email.value = data.email
+//funcion para mostrar los datos de un Usuario
+function loadUsuario(idUsuario) {
+    // Realiza la solicitud con `sendRequest` usando el método `GET`
+    let request = sendRequest('list/usuario/' + idUsuario, 'GET', '');
+
+    // Espera a que la respuesta esté lista
+    request.onload = function() {
+        if (request.status === 200) {  // Comprueba si la respuesta fue exitosa
+            const data = request.response;
+            // Actualiza los campos del modal con los datos del usuario
+            document.getElementById('idUsuarioEditar').value = data.idUsuario;
+            document.getElementById('nombreEditar').value = data.nombre;
+            document.getElementById('contraseñaEditar').value = data.contraseña
+            document.getElementById('emailEditar').value = data.email;
+            
+            // Abre el modal después de cargar los datos
+            $('#editarUsuarioModal').modal('show');
+        } else {
+            alert("Error al recuperar los datos: " + request.status);
+        }
+    };
+
+    // Manejo de errores de red
+    request.onerror = function() {
+        alert("Error de red al recuperar los datos.");
+    };
+}
+
+// Llama a `loadUsuario` cuando se cargue el DOM y hay un `idUsuario` en la URL
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParam = new URLSearchParams(window.location.search);
+    const idUsuario = urlParam.get('idUsuario');
+    if (idUsuario) {
+        loadUsuario(idUsuario);
     }
-    request.onerror = function(){
-        alert("Error al recuperar los datos.")
-    }
+});
+
+
+document.addEventListener('DOMContentLoaded', loadData);
+
+$('#nuevoUsuarioModal').on('show.bs.modal', function() {
+});
+
+document.getElementById('editarUsuarioForm').onsubmit = function(event) {
+    event.preventDefault(); // Evita el envío predeterminado
+    updateUsuario(); // Llama a la función de actualización
+};
+
+//funcion para actualizar los datos
+function updateUsuario() {
+    // Obtiene los valores de los campos del modal de edición
+    let id = document.getElementById('idUsuarioEditar').value;
+    let nombre = document.getElementById('nombreEditar').value;
+    let contraseña = document.getElementById('contraseñaEditar').value;
+    let email = document.getElementById('emailEditar').value;
+
+    // Construye el objeto de datos a enviar
+    let data = {
+        "idUsuario": id,
+        "nombre": nombre,
+        "password": contraseña,
+        "email": email
+    };
+
+    // Define la URL de la API para la actualización
+    let url = `usuario/actualizar`;
+
+    // Envía la solicitud usando `sendRequest`
+    let request = sendRequest(url, 'PUT', data);
+
+    // Maneja la respuesta
+    request.onload = function() {
+        if (request.status === 200) {
+            alert('Usuario actualizado con éxito.');
+            $('#editarUsuarioModal').modal('hide'); // Cierra el modal
+            loadData(); // Llama a la función que recarga la lista de usuarios
+        } else {
+            alert('Error al actualizar el usuario: ' + request.status);
+        }
+    };
+
+    // Manejo de errores de red
+    request.onerror = function() {
+        alert('Error de red al intentar actualizar los datos.');
+    };
 }

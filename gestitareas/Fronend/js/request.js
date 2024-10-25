@@ -1,4 +1,4 @@
-const url = "http:/localhost:8094/"
+const url = "http://localhost:8094/"
 
 function sendRequest(endPoint, method, data) {
     let request = new XMLHttpRequest();

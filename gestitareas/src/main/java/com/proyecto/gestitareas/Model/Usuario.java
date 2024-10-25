@@ -1,7 +1,6 @@
 package com.proyecto.gestitareas.Model;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -32,11 +30,6 @@ public class Usuario {
     @Column(name = "nombre")
     private String nombre;
 
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$", 
-        message = "La contraseña debe tener entre 8 y 20 caracteres,"
-            +
-            "y debe incluir al menos una letra mayúscula, una minúscula, un número" +
-            "y un carácter especial (@#$%^&+=)")
     @NotNull(message = "Este campo no puede ser nulo")
     @NotEmpty(message = "Este campo no puede estar vacío")
     @NotBlank(message = "Este campo no puede estar en blanco")
