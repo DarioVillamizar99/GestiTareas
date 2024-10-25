@@ -21,7 +21,7 @@ function saveUsuario() {
 
     // Define la URL de la API
     let url = `usuario/agregar`;
-    
+
     // Envía la solicitud usando `sendRequest`
     let request = sendRequest(url, 'POST', data);
 
@@ -43,10 +43,9 @@ function saveUsuario() {
 }
 
 
-function deleteUsuario(){
-    let id = document.getElementById('usuario-id').value
-    let request = sendRequest('usuario/' +id , 'DELETE', '')
-    request.onload= function() {
+function deleteUsuario(idUsuario) {
+    let request = sendRequest('usuario/' + idUsuario, 'DELETE', '')
+    request.onload = function() {
         alert('Registro eliminado exitosamente')
         window.location = 'menu.html';
     }
@@ -56,14 +55,14 @@ function deleteUsuario(){
 }
 
 
-function loadData(){
+function loadData() {
     let request = sendRequest('list/usuario', 'GET', '');
     let table = document.getElementById('usuario-table');
-    table.innerHTML="";
-    request.onload = function(){
+    table.innerHTML = "";
+    request.onload = function() {
         let data = request.response;
         data.forEach((element, index) => {
-            table.innerHTML +=  `
+            table.innerHTML += `
             <tr>
                 <th>${element.idUsuario}</th>
                 <td>${element.nombre}</th>
@@ -91,14 +90,14 @@ function loadUsuario(idUsuario) {
 
     // Espera a que la respuesta esté lista
     request.onload = function() {
-        if (request.status === 200) {  // Comprueba si la respuesta fue exitosa
+        if (request.status === 200) { // Comprueba si la respuesta fue exitosa
             const data = request.response;
             // Actualiza los campos del modal con los datos del usuario
             document.getElementById('idUsuarioEditar').value = data.idUsuario;
             document.getElementById('nombreEditar').value = data.nombre;
             document.getElementById('contraseñaEditar').value = data.contraseña
             document.getElementById('emailEditar').value = data.email;
-            
+
             // Abre el modal después de cargar los datos
             $('#editarUsuarioModal').modal('show');
         } else {
@@ -124,8 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', loadData);
 
-$('#nuevoUsuarioModal').on('show.bs.modal', function() {
-});
+$('#nuevoUsuarioModal').on('show.bs.modal', function() {});
 
 document.getElementById('editarUsuarioForm').onsubmit = function(event) {
     event.preventDefault(); // Evita el envío predeterminado
