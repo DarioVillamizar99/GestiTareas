@@ -10,9 +10,10 @@
 
 <body>
     <section class="container">
-        <div class="row align-items-center mb-4">
+        <!-- Margen superior añadido para separar el título y el botón de la parte superior -->
+        <div class="row align-items-center mb-4 mt-4">
             <span class="fw-bold w-auto">Administración de Usuarios</span>
-            <button class="btn btn-primary w-auto" data-toggle="modal" data-target="#nuevoUsuarioModal">
+            <button class="btn btn-primary w-auto ml-3" data-toggle="modal" data-target="#nuevoUsuarioModal">
                 Nuevo Usuario
             </button>
         </div>
@@ -32,8 +33,7 @@
     </section>
 
     <!-- Modal para Nueva Tarea -->
-    <div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="nuevoUusuarioModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="nuevoUusuarioModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -51,11 +51,11 @@
                         </div>
                         <div class="form-group">
                             <label for="ContraseñaNuevo">Contraseña</label>
-                            <input type="password" class="form-control" id="contraseñaNuevo" required></input>
+                            <input type="password" class="form-control" id="contraseñaNuevo" required>
                         </div>
                         <div class="form-group">
-                            <label for="emialNuevo">Email</label>
-                            <input type="text" class="form-control" id="emailNuevo" required></input>
+                            <label for="emailNuevo">Email</label>
+                            <input type="text" class="form-control" id="emailNuevo" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Crear Usuario</button>
                     </form>
@@ -65,8 +65,7 @@
     </div>
 
     <!-- Modal para Editar Tarea -->
-    <div class="modal fade" id="editarUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="editarUsuarioModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="editarUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="editarUsuarioModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -78,20 +77,20 @@
                 <div class="modal-body">
                     <form id="editarUsuarioForm">
                         <div class="form-group">
-                            <label for="tituloEditar">Id Usuario</label>
+                            <label for="idUsuarioEditar">Id Usuario</label>
                             <input type="text" class="form-control" id="idUsuarioEditar">
                         </div>
                         <div class="form-group">
-                            <label for="tituloEditar">Nombre</label>
+                            <label for="nombreEditar">Nombre</label>
                             <input type="text" class="form-control" id="nombreEditar" required>
                         </div>
                         <div class="form-group">
-                            <label for="tituloEditar">Contraseña</label>
+                            <label for="contraseñaEditar">Contraseña</label>
                             <input type="password" class="form-control" id="contraseñaEditar" required>
                         </div>
                         <div class="form-group">
                             <label for="emailEditar">Email</label>
-                            <input type="text" class="form-control" id="emailEditar" required></input>
+                            <input type="text" class="form-control" id="emailEditar" required>
                         </div>
                         <div class="d-flex justify-content-between">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -101,6 +100,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Botón de Volver al Menú -->
+    <div class="position-fixed" style="bottom: 20px; left: 20px;">
+        <a href="menu.html" class="btn btn-danger">Volver al Menú</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

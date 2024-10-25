@@ -19,11 +19,12 @@ function validarLogin() {
             // Guardar el valor de datal en localStorage
             localStorage.setItem('userId', datal); // Puedes cambiar 'userId' por cualquier nombre que prefieras
 
-            if (nombreUsuario != 'admin'){
+            if (nombreUsuario === 'admin') {
+                window.location = 'usuarios.html';
+            } else {
+                // Redireccionar a menu.html
                 window.location = 'menu.html'
             }
-            // Redireccionar a menu.html
-            window.location = 'usuarios.html';
         } else {
             alert('Alerta: Usuario o Password incorrectos');
         }
