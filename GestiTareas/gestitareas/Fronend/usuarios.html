@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Usuarios</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <section class="container">
+        <!-- Margen superior añadido para separar el título y el botón de la parte superior -->
+        <div class="row align-items-center mb-4 mt-4">
+            <span class="fw-bold w-auto">Administración de Usuarios</span>
+            <button class="btn btn-primary w-auto ml-3" data-toggle="modal" data-target="#nuevoUsuarioModal">
+                Nuevo Usuario
+            </button>
+        </div>
+        <div class="divider"></div>
+        <table class="table table-striped table-bordered mt-4">
+            <thead>
+                <tr class="table-bordered">
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Fecha de creación</th>
+                </tr>
+            </thead>
+            <tbody id="usuario-table">
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Modal para Nueva Tarea -->
+    <div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="nuevoUusuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="nuevoUsuarioModalLabel">Nuevo Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="usuarioForm">
+                        <input type="hidden" id="idNuevoUsuario">
+                        <div class="form-group">
+                            <label for="nombreNuevo">Nombre Usuario</label>
+                            <input type="text" class="form-control" id="nombreNuevo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ContraseñaNuevo">Contraseña</label>
+                            <input type="password" class="form-control" id="contraseñaNuevo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailNuevo">Email</label>
+                            <input type="text" class="form-control" id="emailNuevo" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear Usuario</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Tarea -->
+    <div class="modal fade" id="editarUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="editarUsuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarUsuarioModalLabel">Editar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editarUsuarioForm">
+                        <div class="form-group">
+                            <label for="idUsuarioEditar">Id Usuario</label>
+                            <input type="text" class="form-control" id="idUsuarioEditar">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreEditar">Nombre</label>
+                            <input type="text" class="form-control" id="nombreEditar" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contraseñaEditar">Contraseña</label>
+                            <input type="password" class="form-control" id="contraseñaEditar" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailEditar">Email</label>
+                            <input type="text" class="form-control" id="emailEditar" required>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón de Volver al Menú -->
+    <div class="position-fixed" style="bottom: 20px; left: 20px;">
+        <a href="menu.html" class="btn btn-danger">Volver al Menú</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/request.js"></script>
+    <script src="js/usuario.js"></script>
+</body>
+
+</html>
