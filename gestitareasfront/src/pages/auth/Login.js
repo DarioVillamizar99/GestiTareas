@@ -28,46 +28,84 @@ const Login = () => {
 
     const iniciarSesion = async () => {
         const data = {
-            email: usuario.email,
+            nombreUsuario: usuario.email,
             password: usuario.password
         };
 
         try {
             // Llamar a la API y esperar la respuesta
             const response = await APPIInvoke.invokePOST(`/logincliente`, data);
+            console.log(response);
 
-            // Si el backend responde con un estado exitoso (por ejemplo, 200 o 201)
-            if (response.status === 200) {
-                swal({
-                    title: 'Inicio de sesión exitoso',
-                    text: '¡Bienvenido!',
-                    icon: 'success',
-                    buttons: {
-                        confirm: {
-                            text: 'Ok',
-                            value: true,
-                            visible: true,
-                            className: 'btn btn-success',
-                            closeModal: true
-                        }
-                    }
-                });
+            if (usuario.email === 'admin') {
 
-            } else if (response.status === 401) {
-                swal({
-                    title: 'Error',
-                    text: 'Usuario o Contraseña incorrectos',
-                    icon: 'error',
-                    buttons: {
-                        confirm: {
-                            text: 'Ok',
-                            value: true,
-                            visible: true,
-                            className: 'btn btn-danger',
-                            closeModal: true
+                if (response === 2) {
+                    navigate("/home")
+                    swal({
+                        title: 'Inicio de sesión exitoso',
+                        text: '¡Bienvenido!',
+                        icon: 'success',
+                        buttons: {
+                            confirm: {
+                                text: 'Ok',
+                                value: true,
+                                visible: true,
+                                className: 'btn btn-success',
+                                closeModal: true
+                            }
                         }
-                    }
-                });
+                    });
+
+                } else if (response.status === 500) {
+                    swal({
+                        title: 'Error',
+                        text: 'Usuario o Contraseña incorrectos',
+                        icon: 'error',
+                        buttons: {
+                            confirm: {
+                                text: 'Ok',
+                                value: true,
+                                visible: true,
+                                className: 'btn btn-danger',
+                                closeModal: true
+                            }
+                        }
+                    });
+                }
+            } else {
+                if (response === 9) {
+                    navigate("/home2")
+                    swal({
+                        title: 'Inicio de sesión exitoso',
+                        text: '¡Bienvenido!',
+                        icon: 'success',
+                        buttons: {
+                            confirm: {
+                                text: 'Ok',
+                                value: true,
+                                visible: true,
+                                className: 'btn btn-success',
+                                closeModal: true
+                            }
+                        }
+                    });
+
+                } else if (response.status === 500) {
+                    swal({
+                        title: 'Error',
+                        text: 'Usuario o Contraseña incorrectos',
+                        icon: 'error',
+                        buttons: {
+                            confirm: {
+                                text: 'Ok',
+                                value: true,
+                                visible: true,
+                                className: 'btn btn-danger',
+                                closeModal: true
+                            }
+                        }
+                    });
+                }
             }
         } catch (error) {
             console.error('Error al intentar iniciar sesión:', error);
@@ -109,9 +147,9 @@ const Login = () => {
 
                         <form onSubmit={onSubmit}>
                             <div className="input-group mb-3">
-                                <input type="email"
+                                <input type="text"
                                     className="form-control"
-                                    placeholder="Email"
+                                    placeholder="Usuario"
                                     id="email"
                                     name="email"
                                     value={email}

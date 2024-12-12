@@ -109,7 +109,7 @@ const UsuariosAdmin = () => {
                                                     <td>{item.email}</td>
                                                     <td>{item.fechaCreacion}</td>
                                                     <td>
-                                                        <button className='btn btn-sm btn-primary'>Editar</button>&nbsp;
+                                                        <Link to={`/editar-usuario/${item.idUsuario}|${item.nombre}|${item.email}`} className='btn btn-sm btn-primary'>Editar</Link>&nbsp;
                                                         <button onClick={(e) => eliminarUsuarios(e, item.idUsuario)} className='btn btn-sm btn-danger'>Eliminar</button>
                                                     </td>
                                                 </tr>
