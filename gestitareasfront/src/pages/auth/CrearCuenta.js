@@ -50,6 +50,7 @@ const CrearCuenta = () => {
                 email: usuario.email,
                 password: usuario.password
             }
+            
             const response = await APPIInvoke.invokePOST(`/cliente/agregar`, data);
             const mensaje = response.msg;
 
